@@ -1,2 +1,286 @@
 import java.util.Arrays;
 import java.util.ArrayList;
+package Unit3;
+import java.util.Arrays;
+public class Battleship
+{
+    public static void main()
+    {
+       char MyArr[][] = new char[10][10];
+       Initialize2dArray(MyArr); 
+        
+       System.out.println( Arrays.deepToString ( MyArr ) ); 
+
+       /* prompt for Myrow, Mycolumn)
+        * 
+        */
+       if (FindAircraftcarrier(MyArr, MyRow, MyColumn) == 1) 
+       {
+           InsertAircraftcarrier (MyArr, MyRow, MyCol, 'R');
+       }
+       if (FindAircraftcarrier(MyArr, MyRow, MyColumn) == 2) 
+       {
+           InsertAircraftcarrier (MyArr, MyRow, MyCol, 'C');
+       }
+       if (FindAircraftCarrier(MyArr, MyRow, MyColumn) == 0)
+       {
+           break;
+       }
+    }
+    
+    
+    
+    public static char[][] Initialize2dArray (char arr[][])
+    {
+        for (int r = 0; r < 10; r ++)
+        {
+            for (int c = 0; c < 10; c ++)
+            {
+                arr[r][c] = 'w'; 
+            }                        
+        }
+        return arr; 
+    }
+    
+    public static int FindAircraftCarrier (char arr[][], int row, int column)
+    {
+        //finds nothing -- 0
+        //finds 5 w's in a column -- 2
+        //find 5 w's om a row -- 1
+
+        if (row <= 5)
+        {
+            for (int c = column; c < 10; c ++)
+            {
+                if ((arr[row][c] == 'w' && arr[row][c] <= arr.length-1) && (arr[row+1][c] == 'w'  && arr[row+1][c] <= arr.length-1 )  && arr[row+2][c] == 'w' && arr[row  +3 ][c] == 'w' && arr[row + 4][c] == 'w')
+                {
+                   return 2; 
+                }
+            }   
+        }
+        if ( column <= 5)
+        {
+            for (int r = row; r < 10; r ++)
+            {
+                if (arr[r][column] == 'w' && arr[r][column+1] == 'w'  && arr[r][column+2] == 'w' && arr[r][column+3] == 'w' && arr[r][column+4] == 'w')
+                {
+                   return 1; 
+                }
+            }   
+        }
+        return 0; 
+        }
+        
+   
+    
+    public static int InsertAircraftCarrier (char arr[][], int row, int column, char ch)
+    {
+        int ro = row;
+        int co = column; 
+        if (ch == 'R')
+        {
+            for (int r = row; r < 5; r ++)
+            {
+                arr[r][column] = 'a';
+            }
+        }
+        //for loop keep the column the same and populate all the 5 elements with 'A'
+        if (ch == 'c')
+        {
+            for (int c = column; c < 5; c ++)
+            {
+                arr[row][c] = 'a'; 
+            }
+        }
+        //for loop keep the row the same and populate all the 5 elements with 'A'
+        
+        
+    }
+    
+    public static int FindBattleship (char arr[][], int row, int column)
+    {
+        //finds nothing -- 0
+        //finds 4 w's in a column -- 2
+        //find 4 w's om a row -- 1
+        //finds nothing -- 0
+        //finds 5 w's in a column -- 2
+        //find 5 w's om a row -- 1
+
+        if (row <= 4)
+        {
+            for (int c = column; c < 10; c ++)
+            {
+                if (arr[row][c] == 'w' && arr[row+1][c] == 'w'  && arr[row+2][c] == 'w' && arr[row  +3 ][c] == 'w')
+                {
+                   return 2; 
+                }
+            }   
+        }
+        if ( column <= 4)
+        {
+            for (int r = row; r < 10; r ++)
+            {
+                if (arr[r][column] == 'w' && arr[r][column+1] == 'w'  && arr[r][column+2] == 'w' && arr[r][column+3] == 'w' )
+                {
+                   return 1; 
+                }
+            }   
+        }
+        return 0; 
+    }
+    
+    public static int InsertBattleship (char arr[][], int row, int column)
+    {
+        int ro = row;
+        int co = column; 
+        if (ch == 'R')
+        {
+            for (int r = row; r < 4; r ++)
+            {
+                arr[r][column] = 'a';
+            }
+        }
+        //for loop keep the column the same and populate all the 4 elements with 'A'
+        if (ch == 'c')
+        {
+            for (int c = column; c < 4; c ++)
+            {
+                arr[row][c] = 'a'; 
+            }
+        }
+    }
+    
+    public static int FindCruiser (char arr[][], int row, int column)
+    {
+        //finds nothing -- 0
+        //finds 3 w's in a column -- 2
+        //find 3 w's om a row -- 1
+        if (row <= 3)
+        {
+            for (int c = column; c < 10; c ++)
+            {
+                if (arr[row][c] == 'w' && arr[row+1][c] == 'w'  && arr[row+2][c] == 'w' )
+                {
+                   return 2; 
+                }
+            }   
+        }
+        if ( column <= 3)
+        {
+            for (int r = row; r < 10; r ++)
+            {
+                if (arr[r][column] == 'w' && arr[r][column+1] == 'w'  && arr[r][column+2] == 'w' )
+                {
+                   return 1; 
+                }
+            }   
+        }
+        return 0; 
+    }
+    
+    public static int InsertCruizer (char arr[][], int row, int column)
+    {
+        int ro = row;
+        int co = column; 
+        if (ch == 'R')
+        {
+            for (int r = row; r < 3; r ++)
+            {
+                arr[r][column] = 'a';
+            }
+        }
+        //for loop keep the column the same and populate all the 3 elements with 'A'
+        if (ch == 'c')
+        {
+            for (int c = column; c < 3; c ++)
+            {
+                arr[row][c] = 'a'; 
+            }
+        }
+    }
+    
+    public static int FindSubmarine (char arr[][], int row, int column)
+    {
+        //finds nothing -- 0
+        //finds 3 w's in a column -- 2
+        //find 3 w's om a row -- 1
+        if (row <= 3)
+        {
+            for (int c = column; c < 10; c ++)
+            {
+                if (arr[row][c] == 'w' && arr[row+1][c] == 'w' && arr[row + 2][c] == 'w'   )
+                {
+                   return 2; 
+                }
+            }   
+        }
+        if ( column <= 3)
+        {
+            for (int r = row; r < 10; r ++)
+            {
+                if (arr[r][column] == 'w' && arr[r][column+1] == 'w' && arr[column+2][c] == 'w'  )
+                {
+                   return 1; 
+                }
+            }   
+        }
+        return 0; 
+    }
+    
+    public static int InsertSubmarine (char arr[][], int row, int column)
+    {
+        int ro = row;
+        int co = column; 
+        if (ch == 'R')
+        {
+            for (int r = row; r < 3; r ++)
+            {
+                arr[r][column] = 'a';
+            }
+        }
+        //for loop keep the column the same and populate all the 4 elements with 'A'
+        if (ch == 'c')
+        {
+            for (int c = column; c < 3; c ++)
+            {
+                arr[row][c] = 'a'; 
+            }
+        }
+    }
+    
+    public static int FindDestroyer (char arr[][], int row, int column)
+    {
+        //finds nothing -- 0
+        //finds 2 w's in a column -- 2
+        //find 2 w's om a row -- 1
+        
+        if (row <= 2)
+        {
+            for (int c = column; c < 10; c ++)
+            {
+                if (arr[row][c] == 'w' && arr[row+1][c] == 'w'   )
+                {
+                   return 2; 
+                }
+            }   
+        }
+        if ( column <= 2)
+        {
+            for (int r = row; r < 10; r ++)
+            {
+                if (arr[r][column] == 'w' && arr[r][column+1] == 'w'   )
+                {
+                   return 1; 
+                }
+            }   
+        }
+    }
+    
+    public static int InsertDestroyer (char arr[][], int row, int column)
+    {
+        
+    }
+    
+
+}
+
